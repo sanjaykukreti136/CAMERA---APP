@@ -1,5 +1,7 @@
 
 let videoplayer = document.querySelector("video");
+console.log(videoplayer.videoHeight);
+console.log(videoplayer.videoWidth);
 let mediaRecorder;  //// mediaRecorder function for recroding video , uska refernece 
 let chunks = [];  /// jitni bhi video record hoti hai vo kuch parts me hoti hai toh un sabko 
 ///// hum ek array me push karwate jayenge  
@@ -8,6 +10,26 @@ let body = document.querySelector('body');
 let isRec = false;
 let capbtn = document.querySelector("#capture");
 let currsrc;
+
+let color = "";
+let allfilters = document.querySelectorAll('.filter');
+for (let i = 0; i < allfilters.length; i++) {
+    allfilters[i].addEventListener('click', function (e) {
+
+        let previousfilter = document.querySelector('.filter-div');
+        if (previousfilter) previousfilter.remove();
+
+        let currcolor = e.currentTarget.style.backgroundColor;
+        color = currcolor
+        let div = document.createElement('div');
+        div.classList.add('filter-div');
+        div.style.backgroundColor = currcolor;
+
+        body.append(div);
+    })
+}
+
+
 recbtn.addEventListener("click", function () {
     let span = recbtn.querySelector('span');
     if (isRec) {
@@ -63,11 +85,16 @@ capbtn.addEventListener('click', function () {   //// capture button par click h
     }, 1000)
     console.log("clicked");
     let can = document.createElement('canvas');
-    can.width = window.innerWidth;
-    can.height = window.innerHeight;
+    can.width = videoplayer.videoWidth
+    can.height = videoplayer.videoHeight
     let tool = can.getContext('2d');
 
+
     tool.drawImage(videoplayer, 0, 0);
+    if (color != "") {
+        tool.fillStyle = color;
+        tool.fillRect(0, 0, can.width, can.height)
+    }
     downloadkaro(can.toDataURL());
 
 })
