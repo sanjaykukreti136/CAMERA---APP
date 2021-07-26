@@ -9,14 +9,15 @@ let isRec = false;
 let capbtn = document.querySelector("#capture");
 let currsrc;
 recbtn.addEventListener("click", function () {
+    let span = recbtn.querySelector('span');
     if (isRec) {
-        recbtn.innerText = "RECORD"
+        span.classList.remove('animations')
         mediaRecorder.stop();
         isRec = false;
     }
     else {
         mediaRecorder.start();
-        recbtn.innerText = "STOP"
+        span.classList.add('animations');
         isRec = true;
     }
 })
@@ -55,6 +56,11 @@ audiovideopromise.then(function (mediastream) {  //// ON PROMISE RESOLVE IT GIVE
 })
 
 capbtn.addEventListener('click', function () {   //// capture button par click hua 
+    let span = capbtn.querySelector('span');
+    span.classList.add('animations');
+    setTimeout(function () {
+        span.classList.remove('animations');
+    }, 1000)
     console.log("clicked");
     let can = document.createElement('canvas');
     can.width = window.innerWidth;

@@ -24,12 +24,12 @@ video{
         position: fixed;
     border: 7px solid red;
     
-    top: 200px;
-    left: 1400px;
+    top: 240px;
+    left: 1380px;
     border-radius: 50%;
     width: 85px;
     height: 85px;
-    background-color: black;
+    background-color: rgb(15, 0, 0);
     color: white;
     font-weight: bold;
 }
@@ -43,8 +43,8 @@ video{
     position: fixed;
     border: 7px solid red;
     
-    top: 400px;
-    left: 1400px;
+    top: 440px;
+    left: 1380px;
     border-radius: 50%;
     width: 85px;
     height: 85px;
@@ -58,9 +58,74 @@ video{
     color: chartreuse;
 }
 
+.filters{
+    display: flex;
+    flex-direction: column;
+    width: 9rem;
+    height: 36rem;
+    position: fixed;
+    top: 70px;
+    left: 40px;
+   }
+.filter{
+    flex-grow: 1;
+    background-size: cover;
+    border: 4px solid rgb(230, 52, 52);
+    background-image: url("https://blog.cliniindia.com/wp-content/uploads/2017/10/cropped-Free-Wallpaper-Nature-Scenes_Gg92QQ8.jpg");
+}
+
+#zoomin{
+    
+    position: fixed;
+    top: 60px;
+    left: 1300px;
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgb(41, 6, 236);
+    border-radius: 50%;
+    
+}
+
+#zoomout{
+    position: fixed;
+    top: 60px;
+    left: 1450px;
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgb(40, 7, 226);
+    border-radius: 50%;
+    
+}
+
+button span {
+  height: 60%;
+  width: 60%;
+  display: inline-block;
+  border-radius: 50%;
+}
+#record span {
+  background-color: red;
+}
+
+#capture span {
+  background-color: rgb(252, 247, 247);
+}
+
+.animations{
+    animation: shrik;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
 
 
-
-
-
-
+@keyframes shrik{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(0.7);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
