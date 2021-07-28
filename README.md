@@ -7,3 +7,7 @@ Having the functionality of Rcording videos , capturing images .
 Filter can be applied on images . 
 
 Zoom IN ans OUT video and image .
+
+Having Gallery for videos and images .
+
+Indexedb is used for storage .
