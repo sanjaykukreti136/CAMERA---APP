@@ -104,6 +104,8 @@ video{
     height: 60px;
     border: 4px solid rgb(41, 6, 236);
     border-radius: 50%;
+    background-size: cover;
+    background-image: url('https://image.shutterstock.com/image-vector/plus-icon-600w-521624443.jpg');
     
 }
 

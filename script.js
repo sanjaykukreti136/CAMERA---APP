@@ -100,7 +100,6 @@ audiovideopromise.then(function (mediastream) {  //// ON PROMISE RESOLVE IT GIVE
 
 
 }).catch(function () {
-
 })
 
 capbtn.addEventListener('click', function () {   //// capture button par click hua 
