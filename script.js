@@ -15,6 +15,11 @@ let zoomout = document.querySelector("#zoomout");
 let currzoomlevel = 1;
 let color = "";
 let allfilters = document.querySelectorAll('.filter');
+let gallerybtn = document.querySelector('#gallery');
+
+gallerybtn.addEventListener('click', function () {
+    location.assign('gallery.html')
+})
 
 
 //// zooom in button function
@@ -53,6 +58,8 @@ for (let i = 0; i < allfilters.length; i++) {
 
 
 recbtn.addEventListener("click", function () {
+    let previousfilter = document.querySelector('.filter-div');
+    if (previousfilter) previousfilter.remove();
     videoplayer.style.transform = `scale(${1})`;
     let span = recbtn.querySelector('span');
     if (isRec) {
@@ -87,12 +94,8 @@ audiovideopromise.then(function (mediastream) {  //// ON PROMISE RESOLVE IT GIVE
         // jitni bhi videos chunks me the usko ek blob me daal de 
         let blob = new Blob(chunks, { type: "video/mp4" });
         chunks = [];
-        let link = URL.createObjectURL(blob); /// blob ka link 
-        let a = document.createElement("a"); /// video download ke liye 
-        a.href = link;
-        a.download = "video.mp4";
-        a.click();
-        a.remove();
+        addmedia(blob);
+
     })
 
 
@@ -125,19 +128,12 @@ capbtn.addEventListener('click', function () {   //// capture button par click h
         tool.fillRect(0, 0, can.width, can.height)
     }
 
-    //// function for downloading image 
-    downloadkaro(can.toDataURL());
+
+    addmedia(can.toDataURL());
+
+
 
 })
-
-function downloadkaro(val) {
-    let a = document.createElement('a');
-    a.href = val;
-    a.download = "img.png";
-    a.click();
-    a.remove();
-}
-
 
 
 

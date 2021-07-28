@@ -55,6 +55,22 @@ video{
     font-weight: bold;
 
 }
+
+#gallery{
+    z-index: 3;
+    position: fixed;
+    border: 7px solid rgb(252, 248, 248);
+    
+    top: 600px;
+    left: 1380px;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    background-size: cover;
+  
+   
+
+}
 #capture:hover{
     background-color:  rgb(42, 5, 109);
     color: chartreuse;
