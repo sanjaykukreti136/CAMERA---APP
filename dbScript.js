@@ -1,7 +1,5 @@
 let rq = indexedDB.open('gallery', 1);
 
-let download = document.querySelector('.media-download');
-let deletebtn = document.querySelector('.media-delete');
 
 let database;
 
@@ -58,8 +56,18 @@ function viewMedia() {
             mediaCard.innerHTML = `<div class="actual-media"></div>
       <div class="media-buttons">
           <button class="media-download">Download</button>
-          <button class="media-delete">Delete</button>
+          <button mid-value=${cursor.value.mId} class="media-delete">Delete</button>
       </div>`;
+
+            let download = mediaCard.querySelector('.media-download');
+            let delbtn = mediaCard.querySelector('.media-delete');
+            delbtn.addEventListener('click', function (e) {
+
+                let mid = Number(e.currentTarget.getAttribute('mid-value'));
+                deletekaro(mid);
+                e.currentTarget.parentElement.parentElement.remove();
+
+            })
 
             let data = cursor.value.mediadata;
 
@@ -69,6 +77,10 @@ function viewMedia() {
                 img.src = data;
                 let actual = mediaCard.querySelector('.actual-media');
                 actual.append(img);
+
+                download.addEventListener('click', function () {
+                    downloadkaro(data, "image");
+                })
             }
             else if (type == "object") {
                 console.log(1);
@@ -82,6 +94,10 @@ function viewMedia() {
                 video.muted = true
                 let actual = mediaCard.querySelector('.actual-media');
                 actual.append(video);
+
+                download.addEventListener('click', function () {
+                    downloadkaro(url, "object");
+                })
             }
 
             gallerycontainer.append(mediaCard);
@@ -92,12 +108,31 @@ function viewMedia() {
 
 }
 
-download.addEventListener('click', function (e) {
-    
-    
+function downloadkaro(url, type) {
 
-})
+    if (type == 'image') {
 
-deletebtn.addEventListener('click', function () {
-    
-})
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = "img.png";
+        a.click();
+
+    }
+    else {
+
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = "video.mp4";
+        a.click();
+    }
+}
+
+function deletekaro(mid) {
+
+    if (!database) return;
+
+    let tx = database.transaction('media', 'readwrite');
+    let mediaObject = tx.objectStore('media');
+    mediaObject.delete(mid);
+
+}
