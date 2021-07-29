@@ -11,3 +11,5 @@ Zoom IN ans OUT video and image .
 Having Gallery for videos and images .
 
 Indexedb is used for storage .
+
+DEPLOYMENT : https://hopeful-turing-553a27.netlify.app/
